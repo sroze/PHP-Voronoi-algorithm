@@ -815,22 +815,23 @@ class Voronoi
 		if ($dx===0 && $q<0) {
 			return false;
 		}
-		
-		$r = -$q/$dx;
-		if ($dx<0) {
-			if ($r<$t0) {
-				return false;
+		if( $dx != 0 ) {
+			$r = -$q/$dx;
+			if ($dx<0) {
+				if ($r<$t0) {
+					return false;
+				}
+				else if ($r<$t1) {
+					$t1=$r;
+				}
 			}
-			else if ($r<$t1) {
-				$t1=$r;
-			}
-		}
-		else if ($dx>0) {
-			if ($r>$t1) {
-				return false;
-			}
-			else if ($r>$t0) {
-				$t0=$r;
+			else if ($dx>0) {
+				if ($r>$t1) {
+					return false;
+				}
+				else if ($r>$t0) {
+					$t0=$r;
+				}
 			}
 		}
 		
@@ -839,44 +840,48 @@ class Voronoi
 		if ($dx===0 && $q<0) {
 			return false;
 		}
-		$r = $q/$dx;
-		if ($dx<0) {
-			if ($r>$t1) {
-				return false;
+		if( $dx != 0 ) {
+			$r = $q/$dx;
+			if ($dx<0) {
+				if ($r>$t1) {
+					return false;
+				}
+				else if ($r>$t0) {
+					$t0=$r;
+				}
 			}
-			else if ($r>$t0) {
-				$t0=$r;
+			else if ($dx>0) {
+				if ($r<$t0) {
+					return false;
+				}
+				else if ($r<$t1) {
+					$t1=$r;
+				}
 			}
 		}
-		else if ($dx>0) {
-			if ($r<$t0) {
-				return false;
-			}
-			else if ($r<$t1) {
-				$t1=$r;
-			}
-		}
+
 		// top
 		$q = $ay-$bbox->yt;
 		if ($dy===0 && $q<0) {
 			return false;
 		}
-		
-		$r = -$q/$dy;
-		if ($dy<0) {
-			if ($r<$t0) {
-				return false;
+		if( $dy != 0 ) {
+			$r = -$q/$dy;
+			if ($dy<0) {
+				if ($r<$t0) {
+					return false;
+				}
+				else if ($r<$t1) {
+					$t1=$r;
+				}
 			}
-			else if ($r<$t1) {
-				$t1=$r;
-			}
-		}
-		else if ($dy>0) {
-			if ($r>$t1) {
-				return false;
-			}
-			else if ($r>$t0) {
-				$t0=$r;
+			else if ($dy>0) {
+				if ($r>$t1) {
+					return false;
+				}
+				else if ($r>$t0) {
+					$t0=$r;
+				}
 			}
 		}
 		
@@ -885,24 +890,25 @@ class Voronoi
 		if ($dy===0 && $q<0) {
 			return false;
 		}
-		$r = $q/$dy;
-		if ($dy<0) {
-			if ($r>$t1) {
-				return false;
+		if( $dy != 0 ) {
+			$r = $q/$dy;
+			if ($dy<0) {
+				if ($r>$t1) {
+					return false;
+				}
+				else if ($r>$t0) {
+					$t0=$r;
+				}
 			}
-			else if ($r>$t0) {
-				$t0=$r;
+			else if ($dy>0) {
+				if ($r<$t0) {
+					return false;
+				}
+				else if ($r<$t1) {
+					$t1=$r;
+				}
 			}
-		}
-		else if ($dy>0) {
-			if ($r<$t0) {
-				return false;
-			}
-			else if ($r<$t1) {
-				$t1=$r;
-			}
-		}
-	
+		}	
 		// if we reach this point, Voronoi edge is within bbox
 	
 		// if t0 > 0, va needs to change
