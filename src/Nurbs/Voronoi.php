@@ -23,7 +23,7 @@ require_once 'CircleEvent.php';
  */
 class Voronoi
 {
-	const EPSILON = 0.1;
+	const EPSILON = 1e-9;
 	const INFINITY = 1e30;
 	
 	/**
@@ -1028,11 +1028,11 @@ class Voronoi
 		}
 	}
 	
-	public function equalWithEpsilon ($a,$b){return abs($a-$b)<1e-9;}
-	public function greaterThanWithEpsilon ($a,$b){return $a-$b>1e-9;}
-	public function greaterThanOrEqualWithEpsilon ($a,$b){return $b-$a<1e-9;}
-	public function lessThanWithEpsilon ($a,$b){return $b-$a>1e-9;}
-	public function lessThanOrEqualWithEpsilon ($a,$b){return $a-$b<1e-9;}
+	public function equalWithEpsilon ($a,$b){return abs($a-$b)<self::EPSILON;}
+	public function greaterThanWithEpsilon ($a,$b){return $a-$b>self::EPSILON;}
+	public function greaterThanOrEqualWithEpsilon ($a,$b){return $b-$a<self::EPSILON;}
+	public function lessThanWithEpsilon ($a,$b){return $b-$a>self::EPSILON;}
+	public function lessThanOrEqualWithEpsilon ($a,$b){return $a-$b<self::EPSILON;}
 }
 
 class Voronoi_Exception extends Exception
