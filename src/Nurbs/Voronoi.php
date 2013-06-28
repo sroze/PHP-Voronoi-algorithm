@@ -363,7 +363,6 @@ class Voronoi
 	
 	public function addBeachsection ($site) 
 	{
-		//var_dump($site);
 		$x = $site->x;
 		$directrix = $site->y;
 	
@@ -943,13 +942,9 @@ class Voronoi
 			// edge is removed if:
 			//   it is wholly outside the bounding box
 			//   it is actually a point rather than a line
-			//var_dump('clip(while', $edge);
 			if (!$this->connectEdge($edge, $bbox) || !$this->clipEdge($edge, $bbox) || (abs($edge->va->x-$edge->vb->x)<self::EPSILON && abs($edge->va->y-$edge->vb->y)<self::EPSILON)) {
 				$edge->va = $edge->vb = null;
-				//var_dump('clipEdge', $edge, $this->_edges[$iEdge]);
 				array_splice($this->_edges, $iEdge,1);
-			} else {
-				//var_dump('noClipEdge', $edge, $this->_edges[$iEdge]);
 			}
 		}
 	}
@@ -996,7 +991,6 @@ class Voronoi
 				// if end point is not equal to start point, we need to add the missing
 				// halfedge(s) to close the cell
 				if ((abs($endpoint->x-$startpoint->x)>=self::EPSILON || abs($endpoint->y-$startpoint->y)>=self::EPSILON)) {
-					//var_dump('abs-prob', $endpoint, $startpoint);
 					// if we reach this point, cell needs to be closed by walking
 					// counterclockwise along the bounding box until it connects
 					// to next halfedge in the list
@@ -1017,9 +1011,6 @@ class Voronoi
 					// walk leftward along top side
 					else if ($this->equalWithEpsilon($endpoint->y,$yt) && $this->greaterThanWithEpsilon($endpoint->x,$xl)) {
 						$vb = new Nurbs_Point($this->equalWithEpsilon($startpoint->y,$yt) ? $startpoint->x : $xl, $yt);
-					} else {
-						var_dump('louche', $iLeft, $iRight, $startpoint, $endpoint, $bbox);
-						//$vb = $startpoint;
 					}
 					
 					if ($vb) {

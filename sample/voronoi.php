@@ -1,7 +1,8 @@
 <?php 
-require_once '../library/Nurbs/Voronoi.php';
-require_once '../library/Nurbs/Point.php';
+require_once '../src/Nurbs/Voronoi.php';
+require_once '../src/Nurbs/Point.php';
 
+// Create the border box object
 $bbox = new stdClass();
 $bbox->xl = 0;
 $bbox->xr = 400;
@@ -15,16 +16,15 @@ $dy = $height = 400;
 $n = 20;
 $sites = array();
 
-// On créé l'image
+// Create the image
 $im = imagecreatetruecolor($width, $height);
 $white = imagecolorallocate($im, 255, 255, 255);
 $red = imagecolorallocate($im, 255, 0, 0);
 $green = imagecolorallocate($im, 0, 100, 0);
 $black = imagecolorallocate($im, 0, 0, 0);
 imagefill($im, 0, 0, $white);
-//imageantialias($im, true);
 
-// On créé des points aléatoires que l'on dessine
+// Create random points and draw them
 for ($i=0; $i < $n; $i++) {
 	$point = new Nurbs_Point(rand($xo, $dx), rand($yo, $dy));
 	$sites[] = $point;
@@ -34,12 +34,9 @@ for ($i=0; $i < $n; $i++) {
 
 $voronoi = new Voronoi();
 $diagram = $voronoi->compute($sites, $bbox);
-//var_dump($diagram);
 
-//var_dump('sites', $sites, 'diagram', $diagram, 'cells', $diagram['cells']);//, 'voronoi', $voronoi);
 $j = 0;
 foreach ($diagram['cells'] as $cell) {
-	// On va agreger les points du polygone.
 	$points = array();
 	
 	if (count($cell->_halfedges) > 0) {
@@ -69,12 +66,12 @@ foreach ($diagram['cells'] as $cell) {
 		}
 	}
 	
-	// On construit le polygone
+	// Draw Thyssen polygon
 	$color = imagecolorallocatealpha($im, rand(0, 255), rand(0, 255), rand(0, 255), 50);
 	imagefilledpolygon($im, $points, count($points) / 2, $color);
 	$j++;
 }
 
-// On affiche l'image
+// Display image
 imagepng($im, 'voronoi.png');
 
