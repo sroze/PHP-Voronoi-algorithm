@@ -378,13 +378,12 @@ class Voronoi
 			$dxl = $this->leftBreakPoint($node,$directrix)-$x;
 			// x lessThanWithEpsilon xl => falls somewhere before the left edge of the beachsection
 			if ($dxl > self::EPSILON) {
-				// this case should never happen
 				if (!$node->left) {
-				//	rArc = node.rbLeft;
-				//	break;
-					throw new Voronoi_Exception('Should never appears');
+			        $rArc = $node->left;
+					break;
+				} else {
+				    $node = $node->left;
 				}
-				$node = $node->left;
 			}
 			else {
 				$dxr = $x-$this->rightBreakPoint($node,$directrix);

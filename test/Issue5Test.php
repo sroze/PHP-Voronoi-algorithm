@@ -4,12 +4,12 @@ require_once '../src/Nurbs/Point.php';
 require_once '../bin/phpunit.phar';
 
 /**
- * A PHPUnit test for GitHub issue #4
+ * A PHPUnit test for GitHub issue #5
  * 
- * @name Infinite loop in Voronoi::closeCells
- * @link https://github.com/sroze/PHP-Voronoi-algorithm/issues/4
+ * @name "should never appear" exception
+ * @link https://github.com/sroze/PHP-Voronoi-algorithm/issues/5
  */
-class Issue4Test extends PHPUnit_Framework_TestCase
+class Issue5Test extends PHPUnit_Framework_TestCase
 {
     /**
      * Test diagram creation without infinite loop.
@@ -51,7 +51,7 @@ class Issue4Test extends PHPUnit_Framework_TestCase
     public function provider()
     {
         // Read points
-        $file = file('data/issue4.dat');
+        $file = file('data/issue5.dat');
         $points = array();
         foreach ($file as $line) {
             list($x, $y) = explode(',', trim($line));
@@ -60,7 +60,7 @@ class Issue4Test extends PHPUnit_Framework_TestCase
         }
         
         return array(
-            array(400, 400, $points),
+            array(10000, 10000, $points),
         );
     }
 }
