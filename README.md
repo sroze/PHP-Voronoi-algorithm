@@ -104,3 +104,7 @@ imagepng($im, 'voronoi.png');
 ```
 
 That's all. Be free to contrubute or contact me.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/sroze/php-voronoi-algorithm/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
