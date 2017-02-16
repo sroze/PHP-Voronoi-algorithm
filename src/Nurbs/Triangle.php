@@ -1,4 +1,7 @@
 <?php
+
+namespace sroze\voronoi\Nurbs;
+
 /**
  * Représente un triangle de Delaunay.
  * 
@@ -17,7 +20,7 @@ class Nurbs_Triangle extends Nurbs_Surface_Abstract
 	 * Créé le triangle, avec trois points.
 	 * 
 	 */
-	public function __construct (Nurbs_Point $p1, Nurbs_Point $p2, Nurbs_Point $p3)
+	public function __construct (Point $p1, Point $p2, Point $p3)
 	{
 		// On ajoutes les points à la surface.
 		$this->addPoints(array($p1, $p2, $p3));
@@ -44,7 +47,7 @@ class Nurbs_Triangle extends Nurbs_Surface_Abstract
 	 * triangle.
 	 * 
 	 */
-	public function pointInCircle (Nurbs_Point $point)
+	public function pointInCircle (Point $point)
 	{
 		// On vérifie que le triangle est valide
 		if (!$this->isValid()) {
@@ -98,7 +101,7 @@ class Nurbs_Triangle extends Nurbs_Surface_Abstract
 	 * 
 	 * @return bool
 	 */
-	public function pointIn (Nurbs_Point $point)
+	public function pointIn (Point $point)
 	{
 		// On calcul les vecteurs
 		$v0 = Nurbs_Vector::fromPoints($this->p3, $this->p1);
@@ -133,7 +136,7 @@ class Nurbs_Triangle extends Nurbs_Surface_Abstract
 		$x2 = max(array($this->p1->x, $this->p2->x, $this->p3->x));
 		$y2 = max(array($this->p1->y, $this->p2->y, $this->p3->y));
 		
-		return array(new Nurbs_Point($x1, $y1), new Nurbs_Point($x2, $y2));
+		return array(new Point($x1, $y1), new Point($x2, $y2));
 	}
 	
 	/**
@@ -146,7 +149,7 @@ class Nurbs_Triangle extends Nurbs_Surface_Abstract
 	public function getPoint ($x, $y)
 	{
 		// On construit le point
-		$point = new Nurbs_Point($x, $y, 0);
+		$point = new Point($x, $y, 0);
 		
 		// On cherche le vecteur normal au plan du triangle
 		$v_triangle_normal = $this->getNormalVector();

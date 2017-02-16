@@ -1,4 +1,7 @@
 <?php
+
+namespace sroze\voronoi\Nurbs;
+
 /**
  * Implémentation du Red-Black tree.
  * 

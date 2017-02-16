@@ -1,9 +1,15 @@
 <?php
+
+namespace sroze\voronoi\Nurbs;
+
+use sroze\voronoi\Nurbs\Exceptions\NurbsException;
+use sroze\voronoi\Nurbs\Surface\AbstractSurface;
+
 /**
  * Cette classe définie un nurbs, à savoir une surface en 3 dimentions.
  * 
  */ 
-class Nurbs_Nurbs extends Nurbs_Surface_Abstract
+class Nurbs extends AbstractSurface
 {
 	/**
 	 * Méthodes de calcul du nurbs.
@@ -30,7 +36,7 @@ class Nurbs_Nurbs extends Nurbs_Surface_Abstract
 	 * Créé un nurbs depuis un tableau de points.
 	 * 
 	 * @param array $points
-	 * @return Nurbs_Surface_Abstract
+	 * @return AbstractSurface
 	 */
 	public static function fromPoints (array $points)
 	{
@@ -57,7 +63,7 @@ class Nurbs_Nurbs extends Nurbs_Surface_Abstract
 	 * @param integer $x
 	 * @param integer $y
 	 * @param double  $radius
-	 * @return Nurbs_Point
+	 * @return Point
 	 */
 	public function getPoint ($x, $y, $radius = 1)
 	{
@@ -77,7 +83,7 @@ class Nurbs_Nurbs extends Nurbs_Surface_Abstract
 	 * 
 	 * @param integer $x
 	 * @param integer $y
-	 * @return Nurbs_Point
+	 * @return Point
 	 */
 	public function getDelaunayPoint ($x, $y)
 	{
@@ -97,7 +103,7 @@ class Nurbs_Nurbs extends Nurbs_Surface_Abstract
 	{
 		// On vérifie qu'il y a assez de points
 		if (count($this->_points) < 3) {
-			throw new Nurbs_Nurbs_Exception(
+			throw new NurbsException(
 				'Il y a moins de 3 points: impossible d\'utiliser Delaunay'
 			);
 		}
@@ -108,6 +114,3 @@ class Nurbs_Nurbs extends Nurbs_Surface_Abstract
 		return $triangles;
 	}
 }
-
-class Nurbs_Nurbs_Exception extends Exception
-{}

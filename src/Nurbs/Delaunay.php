@@ -1,4 +1,7 @@
-<?php 
+<?php
+
+namespace sroze\voronoi\Nurbs;
+
 class Nurbs_Delaunay
 {
 	/**
