@@ -1,9 +1,14 @@
 <?php
+
+namespace sroze\voronoi\Nurbs\Surface;
+
+use sroze\voronoi\Nurbs\Point;
+
 /**
  * Représente une surface.
  * 
  */ 
-abstract class Nurbs_Surface_Abstract
+abstract class AbstractSurface
 {
 	/**
 	 * Liste des points de la surface.
@@ -28,7 +33,7 @@ abstract class Nurbs_Surface_Abstract
 	 * @param integer $x
 	 * @param integer $y
 	 * @param double $radius On ne garde que les X points les plus prêts
-	 * @return Nurbs_Point
+	 * @return Point
 	 */
 	public function getPoint ($x, $y, $radius = 3)
 	{
@@ -105,7 +110,7 @@ abstract class Nurbs_Surface_Abstract
 		$z = $sum / $ponderations_sum;
 		
 		// On retourne le point calculé
-		return new Nurbs_Point($x, $y, $z);
+		return new Point($x, $y, $z);
 	}
 	
 	/**

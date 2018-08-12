@@ -1,9 +1,12 @@
-<?php 
+<?php
+
+namespace sroze\voronoi\Nurbs;
+
 /**
  * Représente un point défini par ses trois coordonnées.
  * 
  */
-class Nurbs_Point
+class Point
 {
 	// Coordonnées du point
 	public $x;
