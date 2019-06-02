@@ -30,7 +30,7 @@ class Nurbs_Delaunay
 		
 			// On compare ses coordonnées aux limites
 			if ($point->x < $xmin) {
-				$xmin = $point->z;
+				$xmin = $point->x;
 			} else if ($point->x > $xmax) {
 				$xmax = $point->x;
 			}
