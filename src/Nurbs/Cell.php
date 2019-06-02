@@ -15,7 +15,6 @@ class Cell
 	
 	public function prepare ()
 	{
-		$this->_halfedges = $this->_halfedges;
 		$iHalfedge = count($this->_halfedges);
 		$edge = null;
 		
